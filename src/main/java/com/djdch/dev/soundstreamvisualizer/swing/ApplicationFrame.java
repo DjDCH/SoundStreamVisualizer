@@ -60,6 +60,7 @@ public class ApplicationFrame extends JFrame {
         content.add(metersPanel, BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null); // Centered window
     }
 
     public void failure(String message) {
