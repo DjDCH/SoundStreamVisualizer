@@ -6,6 +6,10 @@ public class SoundMetadata {
     private volatile int count;
 
     public SoundMetadata() {
+        reset();
+    }
+
+    public void reset() {
         RMS = 0.0f;
         count = 0;
     }

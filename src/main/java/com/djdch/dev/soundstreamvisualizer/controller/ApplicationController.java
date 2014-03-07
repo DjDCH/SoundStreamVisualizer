@@ -37,6 +37,8 @@ public class ApplicationController {
         analyzer.stop();
 
         analyzer.deleteObserver(frame.getMetersPanel());
+
+        frame.getMetersPanel().reset();
     }
 
     public void failure(Exception e) {

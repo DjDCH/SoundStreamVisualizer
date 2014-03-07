@@ -36,6 +36,12 @@ public class MetersPanel extends JPanel implements Observer {
         repaint();
     }
 
+    public void reset() {
+        metadata.reset();
+
+        rebuild();
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         if (o instanceof SoundAnalyzer) {
