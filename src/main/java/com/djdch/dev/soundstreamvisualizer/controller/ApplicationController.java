@@ -1,5 +1,6 @@
 package com.djdch.dev.soundstreamvisualizer.controller;
 
+import com.djdch.dev.soundstreamvisualizer.runnable.MetersRefresher;
 import com.djdch.dev.soundstreamvisualizer.runnable.SoundAnalyzer;
 import com.djdch.dev.soundstreamvisualizer.runnable.SoundListener;
 import com.djdch.dev.soundstreamvisualizer.swing.ApplicationFrame;
@@ -12,6 +13,7 @@ public class ApplicationController {
 
     private SoundListener listener;
     private SoundAnalyzer analyzer;
+    private MetersRefresher refresher;
 
     public ApplicationController(ApplicationFrame frame) {
         this.frame = frame;
@@ -29,12 +31,17 @@ public class ApplicationController {
         Thread analyzerThread = new Thread(analyzer);
         analyzerThread.start();
 
+        refresher = new MetersRefresher(this, this.frame);
+        Thread refresherThread = new Thread(refresher);
+        refresherThread.start();
+
 //        Executors.newSingleThreadExecutor().submit(listener);
     }
 
     public void stop() {
         listener.stop();
         analyzer.stop();
+        refresher.stop();
 
         analyzer.deleteObserver(frame.getMetersPanel());
 

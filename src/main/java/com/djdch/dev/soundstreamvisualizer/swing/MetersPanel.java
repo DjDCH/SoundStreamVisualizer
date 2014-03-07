@@ -46,8 +46,6 @@ public class MetersPanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         if (o instanceof SoundAnalyzer) {
             this.metadata = (SoundMetadata) arg;
-
-            rebuild(); // TODO: Thread this
         }
     }
 }
