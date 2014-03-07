@@ -23,4 +23,26 @@ public class SoundTools {
         return (float) (Math.pow(averageMeanSquare, 0.5d) + 0.5);
 //        return (float) sumMeanSquare / samples.length;
     }
+
+    /*
+     * Source: http://stackoverflow.com/questions/5800649/detect-silence-when-recording
+     */
+    public static float volumeRMS(byte[] raw) {
+        double sum = 0d;
+
+        for (int ii = 0; ii < raw.length; ii++) {
+            sum += raw[ii];
+        }
+
+        double average = sum / raw.length;
+
+        double sumMeanSquare = 0d;
+        for (int ii = 0; ii < raw.length; ii++) {
+            sumMeanSquare += Math.pow(raw[ii] - average, 2d);
+        }
+        double averageMeanSquare = sumMeanSquare / raw.length;
+        double rootMeanSquare = Math.sqrt(averageMeanSquare);
+
+        return (float) rootMeanSquare;
+    }
 }
