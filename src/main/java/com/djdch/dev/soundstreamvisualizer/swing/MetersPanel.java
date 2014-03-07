@@ -10,7 +10,8 @@ import com.djdch.dev.soundstreamvisualizer.runnable.SoundAnalyzer;
 
 public class MetersPanel extends JPanel implements Observer {
 
-    private final MeterComponent RMS;
+    private final MeterComponent instantRMS;
+    private final MeterComponent smoothRMS;
     private final MeterComponent count;
 
     private SoundMetadata metadata;
@@ -18,20 +19,23 @@ public class MetersPanel extends JPanel implements Observer {
     public MetersPanel() {
         metadata = new SoundMetadata();
 
-        RMS = new MeterComponent("RMS");
-        count = new MeterComponent("Count");
+        instantRMS = new MeterComponent("Instant RMS", 0.0f, 164.0f);
+        smoothRMS = new MeterComponent("Smooth RMS", 0.0f, 164.0f);
+        count = new MeterComponent("Count", 0.0f, 60000.0f);
 
-        setLayout(new GridLayout(1, 2));
+        setLayout(new GridLayout(1, 3));
 
-        add(RMS);
+        add(instantRMS);
+        add(smoothRMS);
         add(count);
 
 //        rebuild();
     }
 
     public void rebuild() {
-        RMS.setData(metadata.getRMS());
-        count.setData((float) metadata.getCount());
+        instantRMS.setRawData(metadata.getInstantRMS());
+        smoothRMS.setRawData(metadata.getSmoothRMS());
+        count.setRawData(metadata.getCount());
 
         repaint();
     }
