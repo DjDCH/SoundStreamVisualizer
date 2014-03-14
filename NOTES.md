@@ -3,6 +3,8 @@
 * http://code.compartmental.net/minim/
 * https://github.com/ddf/Minim
 
+* https://sites.google.com/site/piotrwendykier/software/jtransforms
+
 * http://www.java-tips.org/java-se-tips/javax.sound/capturing-audio-with-java-sound-api.html
 * http://stackoverflow.com/questions/3705581/java-sound-api-capturing-microphone
 * http://stackoverflow.com/questions/20503622/audio-level-meter
@@ -17,3 +19,9 @@
 * http://arduino.cc/en/Tutorial/Dimmer
 * http://arduino.cc/en/Tutorial/Fade
 * http://learn.adafruit.com/rgb-led-strips
+
+## TODO
+
+* Do a `BaseRunner` for all runnable
+* Do a `BaseComponent` for all component
+* Add a `Color` parameter to the component

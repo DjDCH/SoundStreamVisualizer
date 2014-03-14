@@ -1,7 +1,6 @@
 package com.djdch.dev.soundstreamvisualizer.runnable;
 
 import java.util.Observable;
-
 import javax.sound.sampled.AudioFormat;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -12,11 +11,11 @@ import com.djdch.dev.soundstreamvisualizer.util.SSVAudioFormat;
 import com.djdch.dev.soundstreamvisualizer.util.SampleQueue;
 import com.djdch.dev.soundstreamvisualizer.util.SoundTools;
 
-public class SoundAnalyzer extends Observable implements Runnable {
+public class SoundAnalyzer2 extends Observable implements Runnable {
 
     private static final int SAMPLES_ARRAY_SIZE = 5000;
-    private static final int SAMPLES_QUEUE_BUFFER = 16000; // Was 35000, for 44100Hz
-    private static final int SAMPLES_QUEUE_EXTRA = 50; // Was 300, for 44100Hz // XXX: Ideally, we want this value as lower as possible, but the system do not keep up below 350
+    private static final int SAMPLES_QUEUE_BUFFER = 35000;
+    private static final int SAMPLES_QUEUE_EXTRA = 300; // XXX: Ideally, we want this value as lower as possible, but the system do not keep up below 350
     private static final int SAMPLES_QUEUE_SIZE = SAMPLES_QUEUE_BUFFER + SAMPLES_QUEUE_EXTRA;
 
     private final ApplicationController controller;
@@ -26,7 +25,7 @@ public class SoundAnalyzer extends Observable implements Runnable {
 
     private boolean running;
 
-    public SoundAnalyzer(ApplicationController controller) {
+    public SoundAnalyzer2(ApplicationController controller) {
         this.controller = controller;
         this.queue = controller.getQueue();
 

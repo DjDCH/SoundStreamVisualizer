@@ -4,7 +4,7 @@ import javax.sound.sampled.AudioFormat;
 
 public class SSVAudioFormat {
 
-    private static final float SAMPLE_RATE = 44100;
+    private static final float SAMPLE_RATE = 16000; // Was 44100
     private static final int SAMPLE_SIZE_IN_BITS = 8;
     private static final int CHANNELS = 2;
     private static final boolean SIGNED = true;

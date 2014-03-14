@@ -45,4 +45,23 @@ public class SoundTools {
 
         return (float) rootMeanSquare;
     }
+
+    public static float volumeRMSByte(Byte[] raw) {
+        double sum = 0d;
+
+        for (int ii = 0; ii < raw.length; ii++) {
+            sum += raw[ii];
+        }
+
+        double average = sum / raw.length;
+
+        double sumMeanSquare = 0d;
+        for (int ii = 0; ii < raw.length; ii++) {
+            sumMeanSquare += Math.pow(raw[ii] - average, 2d);
+        }
+        double averageMeanSquare = sumMeanSquare / raw.length;
+        double rootMeanSquare = Math.sqrt(averageMeanSquare);
+
+        return (float) rootMeanSquare;
+    }
 }

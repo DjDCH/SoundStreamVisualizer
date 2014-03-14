@@ -23,7 +23,7 @@ public class MetersRefresher implements Runnable {
             frame.getMetersPanel().rebuild();
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
                 controller.failure(e);
             }
