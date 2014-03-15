@@ -9,6 +9,7 @@ public class SSVAudioFormat {
     private static final int CHANNELS = 2;
     private static final boolean SIGNED = true;
     private static final boolean BIG_ENDIAN = true;
+    private static final boolean LITTLE_ENDIAN = false;
 
     private static final AudioFormat format;
 

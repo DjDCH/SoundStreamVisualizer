@@ -35,7 +35,7 @@ public class ApplicationFrame extends JFrame implements KeyEventDispatcher {
 
         controller = new ApplicationController(this);
 
-        JPanel gridPanel = new JPanel(new GridLayout(1, 4));
+        JPanel gridPanel = new JPanel(new GridLayout(1, 2));
         metersPanel = new MetersPanel();
 
         start.setEnabled(true);
