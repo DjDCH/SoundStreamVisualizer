@@ -1,10 +1,15 @@
 package com.djdch.dev.soundstreamvisualizer.controller;
 
+import com.djdch.dev.soundstreamvisualizer.runnable.AudioInputListener;
 import com.djdch.dev.soundstreamvisualizer.runnable.MetersRefresher;
 import com.djdch.dev.soundstreamvisualizer.runnable.SoundAnalyzer;
 import com.djdch.dev.soundstreamvisualizer.runnable.SoundListener;
 import com.djdch.dev.soundstreamvisualizer.swing.ApplicationFrame;
 import com.djdch.dev.soundstreamvisualizer.util.SampleQueue;
+
+import ddf.minim.AudioInput;
+import ddf.minim.Minim;
+import ddf.minim.javasound.JSMinim;
 
 public class ApplicationController {
 
@@ -22,25 +27,42 @@ public class ApplicationController {
     }
 
     public void start() {
-        listener = new SoundListener(this);
-        Thread listenerThread = new Thread(listener);
-        listenerThread.start();
+        AudioInputListener listener = new AudioInputListener(this);
+        listener.addObserver(frame.getMetersPanel());
 
-        analyzer = new SoundAnalyzer(this);
-        analyzer.addObserver(frame.getMetersPanel());
-        Thread analyzerThread = new Thread(analyzer);
-        analyzerThread.start();
+//        listener = new SoundListener(this);
+//        Thread listenerThread = new Thread(listener);
+//        listenerThread.start();
+
+//        analyzer = new SoundAnalyzer(this);
+//        analyzer.addObserver(frame.getMetersPanel());
+//        Thread analyzerThread = new Thread(analyzer);
+//        analyzerThread.start();
 
         refresher = new MetersRefresher(this, this.frame);
         Thread refresherThread = new Thread(refresher);
         refresherThread.start();
 
 //        Executors.newSingleThreadExecutor().submit(listener);
+
+        // FIXME
+        JSMinim jsMinim = new JSMinim(this);
+        Minim minim = new Minim(jsMinim);
+
+        AudioInput in = minim.getLineIn();
+        in.enableMonitoring();
+
+        listener.start(in);
+
+        in.addListener(listener);
+
     }
 
     public void stop() {
-        listener.stop();
-        analyzer.stop();
+//        minim.stop(); // TODO
+
+//        listener.stop();
+//        analyzer.stop();
         refresher.stop();
 
         analyzer.deleteObserver(frame.getMetersPanel());
